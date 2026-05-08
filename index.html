@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Legacy Ios World</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+  font-family: 'Helvetica Neue', 'Open Sans', Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  background-color: #c8c0b0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%23c8c0b0'/%3E%3Crect x='0' y='0' width='1' height='1' fill='%23bfb8a8' opacity='0.6'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%23d4cdc0' opacity='0.5'/%3E%3Crect x='1' y='3' width='1' height='1' fill='%23b8b0a0' opacity='0.4'/%3E%3C/svg%3E");
+  color: #222;
+  padding-bottom: 40px;
+}
+
+/* NAV BAR */
+.nav-bar {
+  height: 44px;
+  background: linear-gradient(180deg, #6d84a2 0%, #4a6484 45%, #3a5474 50%, #3f5d7c 51%, #3a5474 100%);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-bar-title {
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.4);
+  letter-spacing: -0.3px;
+}
+
+/* HERO */
+.hero {
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 9px, rgba(0,0,0,0.06) 9px, rgba(0,0,0,0.06) 10px),
+    repeating-linear-gradient(90deg, transparent, transparent 9px, rgba(0,0,0,0.04) 9px, rgba(0,0,0,0.04) 10px),
+    linear-gradient(160deg, #2c3e50, #1a2535);
+  padding: 30px 20px 26px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0,0,0,0.5);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 2px 6px rgba(0,0,0,0.4);
+}
+
+.hero-icon {
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 14px;
+  background: linear-gradient(180deg, #6ab0f5 0%, #1e6ec8 50%, #1a5fb4 51%, #1565c0 100%);
+  border-radius: 17px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.4), inset 0 -1px 0 rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-icon::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 52%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.05) 100%);
+  border-radius: 17px 17px 60% 60%;
+}
+.hero-icon svg { width: 42px; height: 42px; fill: #fff; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4)); position: relative; z-index: 1; }
+
+.hero-name {
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  letter-spacing: -0.5px;
+}
+.hero-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  margin-top: 5px;
+}
+
+/* GROUP */
+.group { margin: 20px 10px 0; }
+.group-header {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4a5568;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0 10px 6px;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+}
+
+/* TABLE */
+.table {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.7) inset, 0 2px 6px rgba(0,0,0,0.15), 0 0 0 0.5px rgba(0,0,0,0.12);
+}
+.cell {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 14px;
+  background: linear-gradient(180deg, #fff 0%, #f5f5f5 100%);
+  border-bottom: 1px solid #c8c8c8;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  cursor: default;
+}
+.cell:last-child { border-bottom: none; }
+.cell-icon {
+  width: 29px; height: 29px;
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.3);
+}
+.cell-icon svg { width: 17px; height: 17px; fill: #fff; }
+.ci-blue   { background: linear-gradient(180deg, #5baef7, #1e72d6); }
+.ci-green  { background: linear-gradient(180deg, #6ecf5a, #3aab24); }
+.ci-orange { background: linear-gradient(180deg, #ffb340, #e07a00); }
+.ci-gray   { background: linear-gradient(180deg, #a0a8b0, #6d7580); }
+.ci-tg     { background: linear-gradient(180deg, #4fc3f7, #0288d1); }
+
+.cell-content { flex: 1; min-width: 0; }
+.cell-title { font-size: 17px; color: #000; letter-spacing: -0.2px; }
+.cell-detail { font-size: 13px; color: #6d6d72; margin-top: 1px; }
+.cell-value { font-size: 17px; color: #6d6d72; flex-shrink: 0; }
+.cell-value.green { color: #3a9016; font-weight: 600; }
+
+/* LINK CELL */
+a.cell { cursor: pointer; }
+a.cell:active { background: #d0d8e8; }
+.chevron {
+  width: 8px; height: 13px; flex-shrink: 0;
+  fill: none; stroke: #c7c7cc; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* URL BOX */
+.url-box {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.7) inset, 0 2px 6px rgba(0,0,0,0.15), 0 0 0 0.5px rgba(0,0,0,0.12);
+  padding: 13px 14px;
+}
+.url-label {
+  font-size: 12px; color: #8e8e93;
+  text-transform: uppercase; letter-spacing: 0.4px; font-weight: 600;
+  margin-bottom: 6px;
+}
+.url-text {
+  font-size: 14px; color: #1a6ec8;
+  word-break: break-all; margin-bottom: 13px; line-height: 1.4;
+}
+.ios-btn {
+  display: block; width: 100%; height: 44px; border: none; border-radius: 8px;
+  background: linear-gradient(180deg, #6ab0f5 0%, #1e6ec8 50%, #1a5fb4 51%, #1565c0 100%);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.4) inset, 0 -1px 0 rgba(0,0,0,0.2) inset, 0 2px 5px rgba(0,0,0,0.35);
+  color: #fff; font-size: 17px; font-weight: 700;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.35); letter-spacing: -0.3px;
+  cursor: pointer; position: relative; overflow: hidden; transition: filter 0.1s;
+}
+.ios-btn::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 50%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.22) 0%, transparent 100%);
+  border-radius: 8px 8px 0 0;
+}
+.ios-btn:active { filter: brightness(0.88); }
+.ios-btn.copied {
+  background: linear-gradient(180deg, #8fd46a 0%, #4aab20 50%, #3e9a18 51%, #3a9016 100%);
+}
+.url-hint { font-size: 12px; color: #8e8e93; text-align: center; margin-top: 8px; }
+
+/* FOOTER */
+.footer {
+  margin: 24px 10px 0;
+  text-align: center;
+  font-size: 12px;
+  color: #6d6d72;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+  line-height: 1.8;
+}
+</style>
+</head>
+<body>
+
+<div class="nav-bar">
+  <span class="nav-bar-title">Legacy Ios World Repository</span>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-icon">
+    <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+  </div>
+  <div class="hero-name"> </div>
+  <div class="hero-sub">Наш репозиторий!</div>
+</div>
+
+<!-- URL -->
+<div class="group">
+  <div class="group-header">Репозиторий</div>
+  <div class="url-box">
+    <div class="url-label">URL репозитория</div>
+    <div class="url-text" id="repoUrl">https://legacyiosworld.github.io/liwr/</div>
+    <button class="ios-btn" id="copyBtn" onclick="copyUrl()">Скопировать адрес</button>
+    <div class="url-hint">Cydia → Sources → Edit → Add → вставить</div>
+  </div>
+</div>
+
+<!-- INFO -->
+<div class="group">
+  <div class="group-header">Информация</div>
+  <div class="table">
+    <div class="cell">
+      <div class="cell-icon ci-blue">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+      </div>
+      <div class="cell-content"><div class="cell-title">Архитектура</div></div>
+      <div class="cell-value">iphoneos-arm</div>
+    </div>
+    <div class="cell">
+      <div class="cell-icon ci-orange">
+        <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+      </div>
+      <div class="cell-content"><div class="cell-title">Платформа</div></div>
+      <div class="cell-value">iOS</div>
+    </div>
+    <div class="cell">
+      <div class="cell-icon ci-green">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+      </div>
+      <div class="cell-content"><div class="cell-title">Статус</div></div>
+      <div class="cell-value green">Активен</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACTS -->
+<div class="group">
+  <div class="group-header">Наш канал</div>
+  <div class="table">
+    <!-- СЮДА ВСТАВИШЬ ССЫЛКУ НА ТГ -->
+    <a class="cell" href="https://t.me/legacyiosworld" id="tgLink">
+      <div class="cell-icon ci-tg">
+        <svg viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+      </div>
+      <div class="cell-content">
+        <div class="cell-title">Telegram</div>
+        <div class="cell-detail">@legacyiosworld</div>
+      </div>
+      <svg class="chevron" viewBox="0 0 8 13"><polyline points="1,1 7,6.5 1,12"/></svg>
+    </a>
+  </div>
+</div>
+
+<div class="footer">
+  <p></p>
+  <p></p>
+</div>
+
+<script>
+function copyUrl() {
+  const url = document.getElementById('repoUrl').textContent.trim();
+  const btn = document.getElementById('copyBtn');
+  const success = () => {
+    btn.textContent = '✓ Скопировано!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Скопировать адрес'; btn.classList.remove('copied'); }, 2000);
+  };
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(success);
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = url; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    success();
+  }
+}
+</script>
+</body>
+</html>
