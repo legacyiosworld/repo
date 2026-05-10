@@ -1,0 +1,9 @@
+Package: com.yourname.appsyncunified
+Name: appsyncunified
+Version: 1.0
+Architecture: iphoneos-arm
+Description: Пакет из моего репозитория
+Filename: debs/appsyncunified_116.0.deb
+Size: 51658
+MD5sum: 536009a11dad57e48a5563224eaffaff
+
